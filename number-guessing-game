@@ -1,0 +1,55 @@
+import random
+
+def generate_number():
+    number=random.randint(1,100)
+    return number
+
+def get_guess():
+    while True:
+        try:
+            ask=int(input("Your guess: ").strip())
+            return ask
+        except ValueError:
+            print("Make a valid guess")
+
+def check_guess(random_number,guess):
+    if random_number<guess:
+        return "high"
+    elif random_number>guess:
+        return"low"
+    elif random_number==guess:
+        return "correct"
+        
+def main():
+    while True:
+        random_number=generate_number()
+        while True:
+            guess=get_guess()
+            result= check_guess(random_number,guess)
+            print(result)
+
+            if result=="correct":
+                break
+            while True:
+                tri = input("Try another guess? (yes/no): ").lower().strip()
+
+                if tri == "yes":
+                    break  
+                elif tri == "no":
+                    return  
+                else:
+                    print("Invalid input.")
+
+        
+        while True:
+            tell = input("Play Again? (yes/no): ").lower().strip()
+
+            if tell == "yes":
+                break
+            elif tell == "no":
+                return
+            else:
+                print("Invalid input.")
+
+if __name__ == "__main__":
+    main()
